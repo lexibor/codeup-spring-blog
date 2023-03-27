@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All posts</title>
+</head>
+<body>
+<div class="page-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="column">
+                <h1>All posts</h1>
+            </div>
+        </div>
+
+        <div class="row" th:each="post : ${posts}">
+            <div class="column">
+                <div>
+                    <p>Post #<span th:text="${post.id}"></span></p>
+                    <h2 th:text="${post.title}"></h2>
+                    <h3 th:text="${post.body}"></h3>
+                    <hr>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+</body>
+</html>
