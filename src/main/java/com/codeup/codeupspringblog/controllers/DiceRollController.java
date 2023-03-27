@@ -30,7 +30,6 @@ public class DiceRollController
     @GetMapping("/roll-dice/{n}")
     public String viewGuess(@PathVariable int n, Model model)
     {
-
         model.addAttribute("guess", n);
 
         int randomNum = rand.nextInt(6 - 1 + 1) + 1;
