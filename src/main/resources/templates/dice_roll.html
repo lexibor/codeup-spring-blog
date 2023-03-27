@@ -8,11 +8,8 @@
 
 <div>
     <h1>Guess a number between 1-6</h1>
-<!--    <th:block th:each="i: ${#numbers.sequence(0, response.count - 1)}">-->
-<!--        <button th:if="${response.page == i}" class="active">Dummy</button>-->
-<!--        <button th:unless="${response.page == i}">Dummy</button>-->
-<!--    </th:block>-->
-   <form action="" method="post"> <!-- th:action="@{/roll-dice/${n}}"-->
+
+   <form action="" method="post">
         <input type="text" name="diceGuess" id="diceGuess">
         <button type="submit">Submit</button>
     </form>

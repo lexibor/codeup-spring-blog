@@ -6,17 +6,27 @@
 </head>
 <body>
 
-<h1>The dice roll was: <span th:text="${correctNum}">number</span></h1>
+<!--<h1>The dice roll was: <span th:text="${correctNum}"></span></h1>-->
+
+<h1>The dice rolls were:
+    <span th:each="roll: ${allRolls}">
+        [<span th:text="${roll}">roll</span>]
+    </span>
+</h1>
+
 
 <h2>Your guess was: <span th:text="${guess}">guess</span></h2>
 
-<h3 th:if="${guess == correctNum}">
-    Your guess was correct!
-</h3>
+<!--<h3 th:if="${guess == correctNum}">-->
+<!--    Your guess was correct!-->
+<!--</h3>-->
 
-<h3 th:if="${guess != correctNum}">
-    Your guess was incorrect :(
-</h3>
+<!--<h3 th:if="${guess != correctNum}">-->
+<!--    Your guess was incorrect :(-->
+<!--</h3>-->
+
+<h3> You guessed <span th:text="${count}">count</span> roll(s) correctly.</h3>
+
 
 
 </body>

@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.print.attribute.standard.PresentationDirection;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 @Controller
@@ -17,12 +19,11 @@ public class DiceRollController
     @GetMapping("/roll-dice")
     public String viewDiceRollForm()
     {
-        System.out.println("test");
         return "dice_roll";
     }
 
     @PostMapping("/roll-dice")
-    public String sendDiceRollForm(@RequestParam(name = "diceGuess") int n, Model model)
+    public String sendDiceRollFormInformation(@RequestParam(name = "diceGuess") int n, Model model)
     {
         return "redirect:/roll-dice/" + n;
     }
@@ -32,9 +33,26 @@ public class DiceRollController
     {
         model.addAttribute("guess", n);
 
-        int randomNum = rand.nextInt(6 - 1 + 1) + 1;
+        int count = 0;
+//        int correctNum = rand.nextInt(6 - 1 + 1) + 1;
+//        model.addAttribute("correctNum", correctNum);
 
-        model.addAttribute("correctNum", randomNum);
+        List<Integer> diceRolls = new ArrayList<>();
+        for(int i = 0; i < 5; i++)
+        {
+            diceRolls.add(rand.nextInt(6 - 1 + 1) + 1);
+        }
+
+        for(int roll : diceRolls)
+        {
+            if(n == roll)
+            {
+                count++;
+            }
+        }
+
+        model.addAttribute("allRolls", diceRolls);
+        model.addAttribute("count", count);
 
         System.out.println(n);
 
