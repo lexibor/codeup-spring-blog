@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.print.attribute.standard.PresentationDirection;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -19,7 +18,7 @@ public class DiceRollController
     @GetMapping("/roll-dice")
     public String viewDiceRollForm()
     {
-        return "dice_roll";
+        return "dice-roll";
     }
 
     @PostMapping("/roll-dice")
@@ -56,7 +55,7 @@ public class DiceRollController
 
         System.out.println(n);
 
-        return "dice_roll_guess";
+        return "dice-roll-guess";
     }
 
 }
