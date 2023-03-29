@@ -18,7 +18,7 @@ public class DiceRollController
     @GetMapping("/roll-dice")
     public String viewDiceRollForm()
     {
-        return "dice-roll";
+        return "diceRoll/dice-roll";
     }
 
     @PostMapping("/roll-dice")
@@ -55,7 +55,7 @@ public class DiceRollController
 
         System.out.println(n);
 
-        return "dice-roll-guess";
+        return "diceRoll/dice-roll-guess";
     }
 
 }

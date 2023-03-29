@@ -1,0 +1,105 @@
+a
+{
+    text-decoration: none;
+}
+
+
+/* THE PAGE WRAPPER MIMICS THE BODY, ONLY WE ARE ABLE TO DO MORE WITH IT IF NECESSARY */
+.page-wrapper {
+    display:flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* THE CONTAINER -- ALSO KNOWN AS A "SECTION" or "WRAPPER" -- IS A FULL WIDTH DIV THAT
+   SEPARATES SECTIONS OF A WEBSITE. IT ALIGNS IT'S CHILD(REN), THE ROW, TO ITS CENTER,
+   ALLOWING THE ROW TO PROPERLY CONTROL MAX-WIDTH ON SITE CONTENT */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    flex: 0 0 auto;
+    padding: 20px;
+}
+/* THE ROW ESTABLISHES MAXIMUM WIDTH ON SITE CONTENT, AND ORGANIZES ITS CHILD(REN), THE
+   COLUMN, HORIZONTALLY. */
+.row {
+    display: flex;
+    width: 100%;
+    max-width: 900px;
+    padding: 0 20px;
+    column-gap: 20px;
+}
+/* OPTIONAL COMBO CLASS TO MAKE ROW FULL-WIDTH */
+.row.full-width {
+    max-width: unset;
+}
+/* OPTIONAL COMBO CLASS TO MAKE ROW COLUMNS SPACED APART */
+.row.space-between {
+    justify-content: space-between;
+}
+
+/* MULTIPLE COLUMNS IN ONE ROW */
+.row.stacked
+{
+    flex-direction: column;
+}
+
+/* COLUMNS WILL, BY DEFAULT, SHARE SPACE EQUALLY HORIZONTALLY WITHIN THE ROW WITH
+   THEIR SIBLINGS. CONTENT PUT INSIDE THEM WILL STACK VERTICALLY. */
+.column {
+    display:flex;
+    flex-direction: column;
+    flex: 1 0;
+    min-width: 0px;
+}
+/* OPTIONAL COMBO CLASS TO MAKE A COLUMN SHRINK INSTEAD OF GROW */
+.column.col-shrink {
+    flex: 0 1 auto;
+}
+
+
+.background
+{
+    background: url("../img/darkness.webp");
+}
+
+.post
+{
+    box-sizing: border-box;
+
+    background-color: rgba(41, 51, 64, 0.6);
+    background-blend-mode: lighten;
+
+    border-radius: 22px/66px;
+
+    margin: 1em 0;
+    padding: 1em;
+}
+
+.post-text
+{
+    color: antiquewhite;
+}
+
+.post-num
+{
+    color: dimgrey;
+}
+
+.footer
+{
+    background-color: #000000;
+    border: antiquewhite;
+}
+
+.header
+{
+    margin: 2em 0;
+}
+
+
+.text-center
+{
+    text-align: center;
+}
