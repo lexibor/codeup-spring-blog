@@ -27,26 +27,37 @@
 
             <!-- START OF FORM -->
             <div class="row">
-                <div class="column">
-                  <form action="" method="post">
+                <div class="column post">
+                  <form th:action="@{/posts/create}" th:method="post" th:object="${post}">
 
                       <!-- MAKE POST TITLE -->
-                      <div class="row">
+                      <div class="row mb-2">
                           <div class="column">
                               <label for="title">Post Title:</label>
                               <br>
-                              <input type="text" name="title" id="title">
+                              <input th:field="*{title}" id="title">
                           </div>
                       </div>
 
+                      <!-- ADD POST CATEGORIES -->
+<!--                      <div class="row mt-2">-->
+<!--                          <div class="column">-->
+<!--                              <label for="categories">Comma separated categories:</label>-->
+<!--                              <br>-->
+<!--                              <input name="categories" id="categories" type="text">-->
+<!--                          </div>-->
+<!--                      </div>-->
+
                       <!-- MAKE POST BODY -->
-                      <div class="row">
+                      <div class="row mt-2">
                           <div class="column">
                               <label for="body">Post Body:</label>
                               <br>
-                              <textarea name="body" id="body" rows="4" cols="50"></textarea>
+                              <textarea th:field="*{body}" id="body" rows="4" cols="50"></textarea>
                           </div>
                       </div>
+
+
 
                       <!-- SUBMIT BTN -->
                       <div class="row">
@@ -60,13 +71,13 @@
                 </div> <!--- END OF MAIN COLUMN  --->
             </div> <!--- END OF MAIN ROW  --->
 
-            <div class="row">
-                <div class="column">
-                    <footer th:replace="partials/footer :: footer"></footer>
-                </div>
-            </div>
         </div>
 
+    </div>
+
+    <div class="row full-width">
+        <div class="column">
+            <footer th:replace="partials/footer :: footer"></footer>
         </div>
     </div>
 

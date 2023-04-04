@@ -2,6 +2,8 @@ package com.codeup.codeupspringblog.models;
 
 import jakarta.persistence.*;
 
+import java.util.Set;
+
 @Entity
 @Table(name = "posts")
 public class Post
@@ -20,6 +22,14 @@ public class Post
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "user_id")
     private User user;
+
+    @ManyToMany(cascade = CascadeType.PERSIST)
+    @JoinTable(
+            name = "posts_categories",
+            joinColumns = {@JoinColumn(name = "post_id")},
+            inverseJoinColumns = {@JoinColumn(name = "category_id")}
+    )
+    private Set<Category> categories;
 
     public Post()
     {
@@ -44,6 +54,21 @@ public class Post
         this.title = title;
         this.body = body;
         this.user = user;
+    }
+
+    public Post(String title, String body, User user, Set<Category> categorySet) {
+        this.title = title;
+        this.body = body;
+        this.user = user;
+        this.categories = categorySet;
+    }
+
+    public Post(long id, String title, String body, User user, Set<Category> categorySet) {
+        this.id = id;
+        this.title = title;
+        this.body = body;
+        this.user = user;
+        this.categories = categorySet;
     }
 
     public long getId()
@@ -83,4 +108,23 @@ public class Post
     public void setUser(User user) {
         this.user = user;
     }
+
+    public Set<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(Set<Category> categories) {
+        this.categories = categories;
+    }
+
+//    @Override
+//    public String toString() {
+//        return "Post{" +
+//                "id=" + id +
+//                ", title='" + title + '\'' +
+//                ", body='" + body + '\'' +
+//                ", user=" + user +
+//                ", categories=" + categories +
+//                '}';
+//    }
 }

@@ -68,6 +68,8 @@ public class Ad {
         this.description = description;
         this.user = user;
     }
+
+
 }
 
 

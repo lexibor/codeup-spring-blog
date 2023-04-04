@@ -75,6 +75,8 @@ a
 
     margin: 1em 0;
     padding: 1em;
+
+    position: relative;
 }
 
 .post-text
@@ -102,4 +104,15 @@ a
 .text-center
 {
     text-align: center;
+}
+
+.post-link
+{
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+
 }
