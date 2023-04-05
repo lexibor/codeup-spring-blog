@@ -14,7 +14,7 @@ public class HomeController
         this.emailService = emailService;
     }
 
-    @GetMapping("/hello")
+    @GetMapping("/")
     public String welcome()
     {
 //        emailService.prepareAndSend("test", "this is a test");

@@ -1,10 +1,11 @@
 package com.codeup.codeupspringblog.controllers;
 
 import com.codeup.codeupspringblog.models.*;
-import com.codeup.codeupspringblog.repositories.CategoryRepository;
+//import com.codeup.codeupspringblog.repositories.CategoryRepository;
 import com.codeup.codeupspringblog.repositories.PostRepository;
 import com.codeup.codeupspringblog.repositories.UserRepository;
 import com.codeup.codeupspringblog.services.EmailService;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -17,16 +18,16 @@ public class PostController
     private final EmailService emailService;
     private final PostRepository postDao;
     private final UserRepository usersDao;
-    private final CategoryRepository categoriesDao;
+//    private final CategoryRepository categoriesDao;
 
     public PostController(PostRepository postDao,
                           UserRepository usersDao,
-                          CategoryRepository categoriesDao,
+//                          CategoryRepository categoriesDao,
                           EmailService emailService)
     {
         this.postDao = postDao;
         this.usersDao = usersDao;
-        this.categoriesDao = categoriesDao;
+//        this.categoriesDao = categoriesDao;
         this.emailService = emailService;
     }
 
@@ -34,10 +35,6 @@ public class PostController
     @GetMapping("/posts")
     public String indexPage(Model model) // all posts
     {
-//        List<Post> posts = new ArrayList<>(List.of(
-//                new Post(2, "Ultimate staring contest", "There are two men staring at each other doing bizarre poses. They started floating??"),
-//                new Post(3, "I found a weird bug", "It is very small but it has a tiny sword and keeps hitting my foot with it. It tried climbing up my leg.")
-//        ));
 
         List<Post> posts = postDao.findAll();
 
@@ -66,15 +63,14 @@ public class PostController
 
     }
 
-//    @GetMapping("/posts/error/{errorType}")
-//    public String errorNotFound()
-//    {
-//        return "posts/error";
-//    }
-
     @GetMapping("/posts/create")
     public String viewCreatePost(Model model)
     {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        System.out.println(user);
+
+
         model.addAttribute("post", new Post());
         return "posts/create";
     }
@@ -82,7 +78,13 @@ public class PostController
     @PostMapping("/posts/create")
     public String createPost(@ModelAttribute Post post)
     {
-        User user = Users.randomUser(usersDao);
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User userCopy = new User(user);
+
+        System.out.println(user);
+        System.out.println(userCopy);
+        System.out.println(post.getTitle());
+        System.out.println(post.getBody());
 //
 //        Set<Category> initialCategories = Categories.makeCategorySet(categories);
 //        Set<Category> finalPostCategories = Categories.makeCategorySet(categories);
@@ -113,9 +115,12 @@ public class PostController
 
 //        System.out.println(newPost);
 
-        post.setUser(user);
+//        emailService.prepareAndSend(post, "test", "this is a test");
 
-        emailService.prepareAndSend(post, "test", "this is a test");
+        post.setUser(usersDao.findById(userCopy.getId()));
+
+        System.out.println(post.getUser());
+
 
         postDao.save(post);
 
